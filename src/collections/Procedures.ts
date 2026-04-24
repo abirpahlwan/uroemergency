@@ -4,6 +4,7 @@ export const Procedures: CollectionConfig = {
   slug: 'procedures',
   admin: {
     useAsTitle: 'name',
+    group: "App Content",
     defaultColumns: ['name', 'category', 'difficulty', 'updatedAt'],
   },
   fields: [
