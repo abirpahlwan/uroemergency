@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    procedures: Procedure;
+    tools: Tool;
+    drugs: Drug;
+    clinics: Clinic;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +82,10 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    procedures: ProceduresSelect<false> | ProceduresSelect<true>;
+    tools: ToolsSelect<false> | ToolsSelect<true>;
+    drugs: DrugsSelect<false> | DrugsSelect<true>;
+    clinics: ClinicsSelect<false> | ClinicsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -87,8 +95,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-config': SiteConfig;
+  };
+  globalsSelect: {
+    'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -163,6 +175,268 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "procedures".
+ */
+export interface Procedure {
+  id: number;
+  name: string;
+  category: 'diagnostic' | 'therapeutic' | 'surgical' | 'emergency';
+  difficulty?: ('basic' | 'intermediate' | 'advanced') | null;
+  duration?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  indications?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  contraindications?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  steps?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  tools?: (number | Tool)[] | null;
+  drugs?: (number | Drug)[] | null;
+  media?: (number | null) | Media;
+  references?:
+    | {
+        title: string;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  name: string;
+  category: 'diagnostic' | 'surgical' | 'monitoring' | 'catheterisation' | 'endoscopy' | 'other';
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  usageNotes?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  manufacturer?: string | null;
+  catalogueNumber?: string | null;
+  isDisposable?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "drugs".
+ */
+export interface Drug {
+  id: number;
+  name: string;
+  genericName?: string | null;
+  category: 'analgesic' | 'antibiotic' | 'antispasmodic' | 'diuretic' | 'anaesthetic' | 'anticoagulant' | 'other';
+  dosage?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  indications?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  contraindications?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  sideEffects?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  interactions?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clinics".
+ */
+export interface Clinic {
+  id: number;
+  name: string;
+  type: 'emergency' | 'outpatient' | 'inpatient' | 'diagnostic' | 'private';
+  address: {
+    street?: string | null;
+    city: string;
+    postcode?: string | null;
+    country?: string | null;
+  };
+  phone?: string | null;
+  email?: string | null;
+  website?: string | null;
+  openingHours?:
+    | {
+        day: 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 'Sunday';
+        opens?: string | null;
+        closes?: string | null;
+        closed?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  is24Hours?: boolean | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -192,6 +466,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'procedures';
+        value: number | Procedure;
+      } | null)
+    | ({
+        relationTo: 'tools';
+        value: number | Tool;
+      } | null)
+    | ({
+        relationTo: 'drugs';
+        value: number | Drug;
+      } | null)
+    | ({
+        relationTo: 'clinics';
+        value: number | Clinic;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -277,6 +567,98 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "procedures_select".
+ */
+export interface ProceduresSelect<T extends boolean = true> {
+  name?: T;
+  category?: T;
+  difficulty?: T;
+  duration?: T;
+  description?: T;
+  indications?: T;
+  contraindications?: T;
+  steps?: T;
+  tools?: T;
+  drugs?: T;
+  media?: T;
+  references?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools_select".
+ */
+export interface ToolsSelect<T extends boolean = true> {
+  name?: T;
+  category?: T;
+  description?: T;
+  usageNotes?: T;
+  image?: T;
+  manufacturer?: T;
+  catalogueNumber?: T;
+  isDisposable?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "drugs_select".
+ */
+export interface DrugsSelect<T extends boolean = true> {
+  name?: T;
+  genericName?: T;
+  category?: T;
+  dosage?: T;
+  indications?: T;
+  contraindications?: T;
+  sideEffects?: T;
+  interactions?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clinics_select".
+ */
+export interface ClinicsSelect<T extends boolean = true> {
+  name?: T;
+  type?: T;
+  address?:
+    | T
+    | {
+        street?: T;
+        city?: T;
+        postcode?: T;
+        country?: T;
+      };
+  phone?: T;
+  email?: T;
+  website?: T;
+  openingHours?:
+    | T
+    | {
+        day?: T;
+        opens?: T;
+        closes?: T;
+        closed?: T;
+        id?: T;
+      };
+  is24Hours?: T;
+  description?: T;
+  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -314,6 +696,54 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * Global site settings and key values
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-config".
+ */
+export interface SiteConfig {
+  id: number;
+  siteName: string;
+  tagline?: string | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  address?: string | null;
+  emergencyNumber?: string | null;
+  logoUrl?: (number | null) | Media;
+  socialLinks?:
+    | {
+        platform: 'Facebook' | 'Twitter' | 'LinkedIn' | 'Instagram' | 'YouTube';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-config_select".
+ */
+export interface SiteConfigSelect<T extends boolean = true> {
+  siteName?: T;
+  tagline?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  address?: T;
+  emergencyNumber?: T;
+  logoUrl?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
