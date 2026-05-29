@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const Procedures: CollectionConfig = {
-  slug: 'procedures',
+export const Emergencies: CollectionConfig = {
+  slug: 'emergencies',
   admin: {
     useAsTitle: 'name',
     group: "App Content",
@@ -11,7 +11,7 @@ export const Procedures: CollectionConfig = {
     {
       name: 'name',
       type: 'text',
-      label: 'Procedure Name',
+      label: 'Emergency Name',
       required: true,
     },
     {

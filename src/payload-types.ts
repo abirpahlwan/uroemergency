@@ -69,7 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    procedures: Procedure;
+    emergencies: Emergency;
     tools: Tool;
     drugs: Drug;
     clinics: Clinic;
@@ -82,7 +82,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    procedures: ProceduresSelect<false> | ProceduresSelect<true>;
+    emergencies: EmergenciesSelect<false> | EmergenciesSelect<true>;
     tools: ToolsSelect<false> | ToolsSelect<true>;
     drugs: DrugsSelect<false> | DrugsSelect<true>;
     clinics: ClinicsSelect<false> | ClinicsSelect<true>;
@@ -175,9 +175,9 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "procedures".
+ * via the `definition` "emergencies".
  */
-export interface Procedure {
+export interface Emergency {
   id: number;
   name: string;
   category: 'diagnostic' | 'therapeutic' | 'surgical' | 'emergency';
@@ -468,8 +468,8 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'procedures';
-        value: number | Procedure;
+        relationTo: 'emergencies';
+        value: number | Emergency;
       } | null)
     | ({
         relationTo: 'tools';
@@ -567,9 +567,9 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "procedures_select".
+ * via the `definition` "emergencies_select".
  */
-export interface ProceduresSelect<T extends boolean = true> {
+export interface EmergenciesSelect<T extends boolean = true> {
   name?: T;
   category?: T;
   difficulty?: T;
