@@ -5,7 +5,7 @@ export const Emergencies: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: "App Content",
-    defaultColumns: ['name', 'category', 'difficulty', 'updatedAt'],
+    defaultColumns: ['name', 'updatedAt'],
   },
   fields: [
     {
@@ -15,87 +15,24 @@ export const Emergencies: CollectionConfig = {
       required: true,
     },
     {
-      name: 'category',
-      type: 'select',
-      label: 'Category',
-      options: [
-        { label: 'Diagnostic', value: 'diagnostic' },
-        { label: 'Therapeutic', value: 'therapeutic' },
-        { label: 'Surgical', value: 'surgical' },
-        { label: 'Emergency', value: 'emergency' },
-      ],
-      required: true,
-    },
-    {
-      name: 'difficulty',
-      type: 'select',
-      label: 'Difficulty Level',
-      options: [
-        { label: 'Basic', value: 'basic' },
-        { label: 'Intermediate', value: 'intermediate' },
-        { label: 'Advanced', value: 'advanced' },
-      ],
-    },
-    {
-      name: 'duration',
-      type: 'text',
-      label: 'Estimated Duration',
-    },
-    {
-      name: 'description',
+      name: 'history',
       type: 'richText',
-      label: 'Description',
+      label: 'History',
     },
     {
-      name: 'indications',
+      name: 'examination',
       type: 'richText',
-      label: 'Indications',
+      label: 'Examination',
     },
     {
-      name: 'contraindications',
+      name: 'investigation',
       type: 'richText',
-      label: 'Contraindications',
+      label: 'Investigation',
     },
     {
-      name: 'steps',
+      name: 'management',
       type: 'richText',
-      label: 'Step-by-Step Instructions',
-    },
-    {
-      name: 'tools',
-      type: 'relationship',
-      relationTo: 'tools',
-      hasMany: true,
-      label: 'Required Tools',
-    },
-    {
-      name: 'drugs',
-      type: 'relationship',
-      relationTo: 'drugs',
-      hasMany: true,
-      label: 'Associated Drugs',
-    },
-    {
-      name: 'media',
-      type: 'upload',
-      relationTo: 'media',
-      label: 'Image / Diagram',
-    },
-    {
-      name: 'references',
-      type: 'array',
-      label: 'References',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'url',
-          type: 'text',
-        },
-      ],
+      label: 'Management',
     },
   ],
 }
