@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     emergencies: Emergency;
+    guidances: Guidance;
     tools: Tool;
     drugs: Drug;
     clinics: Clinic;
@@ -83,6 +84,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     emergencies: EmergenciesSelect<false> | EmergenciesSelect<true>;
+    guidances: GuidancesSelect<false> | GuidancesSelect<true>;
     tools: ToolsSelect<false> | ToolsSelect<true>;
     drugs: DrugsSelect<false> | DrugsSelect<true>;
     clinics: ClinicsSelect<false> | ClinicsSelect<true>;
@@ -391,6 +393,44 @@ export interface Drug {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guidances".
+ */
+export interface Guidance {
+  id: number;
+  name: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  references?:
+    | {
+        title: string;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  images?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "clinics".
  */
 export interface Clinic {
@@ -470,6 +510,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'emergencies';
         value: number | Emergency;
+      } | null)
+    | ({
+        relationTo: 'guidances';
+        value: number | Guidance;
       } | null)
     | ({
         relationTo: 'tools';
@@ -586,6 +630,29 @@ export interface EmergenciesSelect<T extends boolean = true> {
     | {
         title?: T;
         url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "guidances_select".
+ */
+export interface GuidancesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  references?:
+    | T
+    | {
+        title?: T;
+        url?: T;
+        id?: T;
+      };
+  images?:
+    | T
+    | {
+        image?: T;
         id?: T;
       };
   updatedAt?: T;

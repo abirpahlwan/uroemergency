@@ -4,7 +4,7 @@ export const Clinics: CollectionConfig = {
   slug: 'clinics',
   admin: {
     useAsTitle: 'name',
-    group: "App Content",
+    group: "Others",
     defaultColumns: ['name', 'type', 'city', 'updatedAt'],
   },
   fields: [

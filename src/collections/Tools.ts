@@ -4,7 +4,7 @@ export const Tools: CollectionConfig = {
   slug: 'tools',
   admin: {
     useAsTitle: 'name',
-    group: "App Content",
+    group: "Others",
     defaultColumns: ['name', 'category', 'updatedAt'],
   },
   fields: [

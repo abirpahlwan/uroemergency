@@ -12,6 +12,7 @@ import { Emergencies } from './collections/Emergencies'
 import { Tools } from './collections/Tools'
 import { Drugs } from './collections/Drugs'
 import { Clinics } from './collections/Clinics'
+import { Guidances } from './collections/Guidances'
 import { SiteConfig } from './globals/SiteConfig'
 
 const filename = fileURLToPath(import.meta.url)
@@ -24,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Emergencies, Tools, Drugs, Clinics],
+  collections: [Users, Media, Emergencies, Guidances, Tools, Drugs, Clinics],
   globals: [SiteConfig],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
