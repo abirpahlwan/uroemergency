@@ -242,14 +242,6 @@ export interface Emergency {
     };
     [k: string]: unknown;
   } | null;
-  media?: (number | null) | Media;
-  references?:
-    | {
-        title: string;
-        url?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -342,40 +334,15 @@ export interface Tool {
  */
 export interface Drug {
   id: number;
+  indication: string;
   name: string;
-  genericName?: string | null;
-  category: 'analgesic' | 'antibiotic' | 'antispasmodic' | 'diuretic' | 'anaesthetic' | 'anticoagulant' | 'other';
-  dosage?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  indications?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  contraindications?: {
+  alternativeDrugs?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  instruction?: {
     root: {
       type: string;
       children: {
@@ -405,21 +372,13 @@ export interface Drug {
     };
     [k: string]: unknown;
   } | null;
-  interactions?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  references?:
+    | {
+        title: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
   notes?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -614,14 +573,6 @@ export interface EmergenciesSelect<T extends boolean = true> {
   examination?: T;
   investigation?: T;
   management?: T;
-  media?: T;
-  references?:
-    | T
-    | {
-        title?: T;
-        url?: T;
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -669,14 +620,23 @@ export interface ToolsSelect<T extends boolean = true> {
  * via the `definition` "drugs_select".
  */
 export interface DrugsSelect<T extends boolean = true> {
+  indication?: T;
   name?: T;
-  genericName?: T;
-  category?: T;
-  dosage?: T;
-  indications?: T;
-  contraindications?: T;
+  alternativeDrugs?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  instruction?: T;
   sideEffects?: T;
-  interactions?: T;
+  references?:
+    | T
+    | {
+        title?: T;
+        link?: T;
+        id?: T;
+      };
   notes?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -5,49 +5,38 @@ export const Drugs: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     group: "App Content",
-    defaultColumns: ['name', 'genericName', 'category', 'updatedAt'],
+    defaultColumns: ['indication', 'name', 'updatedAt'],
   },
   fields: [
     {
+      name: 'indication',
+      type: 'text',
+      label: 'Indication',
+      required: true,
+    },
+    {
       name: 'name',
       type: 'text',
-      label: 'Brand / Common Name',
+      label: 'Drug Name',
       required: true,
     },
     {
-      name: 'genericName',
-      type: 'text',
-      label: 'Generic Name',
-    },
-    {
-      name: 'category',
-      type: 'select',
-      label: 'Category',
-      options: [
-        { label: 'Analgesic', value: 'analgesic' },
-        { label: 'Antibiotic', value: 'antibiotic' },
-        { label: 'Antispasmodic', value: 'antispasmodic' },
-        { label: 'Diuretic', value: 'diuretic' },
-        { label: 'Anaesthetic', value: 'anaesthetic' },
-        { label: 'Anticoagulant', value: 'anticoagulant' },
-        { label: 'Other', value: 'other' },
+      name: 'alternativeDrugs',
+      type: 'array',
+      label: 'Alternative Drugs',
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Drug Name',
+          required: true,
+        },
       ],
-      required: true,
     },
     {
-      name: 'dosage',
+      name: 'instruction',
       type: 'richText',
-      label: 'Dosage & Administration',
-    },
-    {
-      name: 'indications',
-      type: 'richText',
-      label: 'Indications',
-    },
-    {
-      name: 'contraindications',
-      type: 'richText',
-      label: 'Contraindications',
+      label: 'Instruction (Dosage & Administration)',
     },
     {
       name: 'sideEffects',
@@ -55,14 +44,28 @@ export const Drugs: CollectionConfig = {
       label: 'Side Effects',
     },
     {
-      name: 'interactions',
-      type: 'richText',
-      label: 'Drug Interactions',
+      name: 'references',
+      type: 'array',
+      label: 'References',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          label: 'Title',
+          required: true,
+        },
+        {
+          name: 'link',
+          type: 'text',
+          label: 'Link',
+          required: true,
+        },
+      ],
     },
     {
       name: 'notes',
       type: 'textarea',
-      label: 'Additional Notes',
+      label: 'Notes',
     },
   ],
 }
