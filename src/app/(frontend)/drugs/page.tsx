@@ -16,7 +16,6 @@ export default async function DrugsPage() {
 
   return (
     <>
-      <NavBar />
       <div className="mx-auto max-w-3xl px-6 py-10">
         <div className="mb-8">
           <h1 className="text-2xl font-bold tracking-tight">Drugs</h1>
