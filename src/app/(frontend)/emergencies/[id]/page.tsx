@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import React from 'react'
 import config from '@/payload.config'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { RichTextRenderer } from '../../components/RichTextRenderer'
-import { NavBar } from '../../components/NavBar'
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -31,32 +29,29 @@ export default async function EmergencyDetailPage({ params }: Props) {
   ]
 
   return (
-    <>
-      <NavBar />
-      <div className="mx-auto max-w-3xl px-6 py-10">
-        <Link href="/emergencies" className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
-          ← Emergencies
-        </Link>
-        <h1 className="mb-8 text-2xl font-bold tracking-tight">{emergency.name}</h1>
+    <div className="mx-auto max-w-3xl px-6 py-10">
+      <Link href="/emergencies" className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
+        ← Emergencies
+      </Link>
+      <h1 className="mb-8 text-2xl font-bold tracking-tight">{emergency.name}</h1>
 
-        <div className="flex flex-col gap-4">
-          {sections.map(({ key, label, data }) => (
-            <Card key={key}>
-              <CardHeader className="border-b border-border pb-3">
-                <CardTitle className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                  {label}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-4">
-                {data
-                  ? <RichTextRenderer data={data as any} />
-                  : <p className="text-sm text-muted-foreground">No content.</p>
-                }
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className="flex flex-col gap-4">
+        {sections.map(({ key, label, data }) => (
+          <div key={key} className="rounded-lg border border-border bg-card text-card-foreground">
+            <div className="px-6 pt-6 pb-3 border-b border-border">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                {label}
+              </p>
+            </div>
+            <div className="px-6 pb-6 pt-4">
+              {data
+                ? <RichTextRenderer data={data as any} />
+                : <p className="text-sm text-muted-foreground">No content.</p>
+              }
+            </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   )
 }
