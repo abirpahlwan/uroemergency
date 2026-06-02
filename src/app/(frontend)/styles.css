@@ -110,6 +110,8 @@ svg {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    position: relative;
+    z-index: 1;
 
     h1 {
       text-align: center;

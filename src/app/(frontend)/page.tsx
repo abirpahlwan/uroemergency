@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 
 import config from '@/payload.config'
 import './styles.css'
+import DotBackground from './DotBackground'
 
 export default async function HomePage() {
   const headers = await getHeaders()
@@ -13,6 +14,7 @@ export default async function HomePage() {
 
   return (
     <div className="home">
+      <DotBackground />
       <div className="content">
         {!user && <h1>Uro Emergency</h1>}
         {user && <h1>Welcome back, {user.email}</h1>}
