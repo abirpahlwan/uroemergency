@@ -1,10 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
-export const Drugs: CollectionConfig = {
-  slug: 'drugs',
+export const Indications: CollectionConfig = {
+  slug: 'indications',
   orderable: true,
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: 'indication',
     group: "App Content",
     defaultColumns: ['indication', 'name', 'updatedAt'],
   },

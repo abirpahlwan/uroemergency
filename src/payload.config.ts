@@ -10,7 +10,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Emergencies } from './collections/Emergencies'
 import { Tools } from './collections/Tools'
-import { Drugs } from './collections/Drugs'
+import { Indications } from './collections/Indications'
 import { Clinics } from './collections/Clinics'
 import { Guidances } from './collections/Guidances'
 import { SiteConfig } from './globals/SiteConfig'
@@ -25,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Emergencies, Guidances, Tools, Drugs, Clinics],
+  collections: [Users, Media, Emergencies, Guidances, Tools, Indications, Clinics],
   globals: [SiteConfig],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
