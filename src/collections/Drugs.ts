@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 export const Drugs: CollectionConfig = {
   slug: 'drugs',
+  orderable: true,
   admin: {
     useAsTitle: 'name',
     group: "App Content",

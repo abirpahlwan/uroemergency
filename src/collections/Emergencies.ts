@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 export const Emergencies: CollectionConfig = {
   slug: 'emergencies',
+  orderable: true,
   admin: {
     useAsTitle: 'name',
     group: "App Content",
