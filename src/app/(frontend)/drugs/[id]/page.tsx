@@ -62,7 +62,6 @@ export default async function DrugDetailPage({ params }: Props) {
 
   return (
     <>
-      <NavBar />
       <div className="mx-auto max-w-3xl px-6 py-10">
         <Link href="/drugs" className="mb-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
           ← Drugs
