@@ -181,6 +181,7 @@ export interface Media {
  */
 export interface Emergency {
   id: number;
+  _order?: string | null;
   name: string;
   history?: {
     root: {
@@ -251,6 +252,7 @@ export interface Emergency {
  */
 export interface Guidance {
   id: number;
+  _order?: string | null;
   name: string;
   description?: {
     root: {
@@ -334,6 +336,7 @@ export interface Tool {
  */
 export interface Drug {
   id: number;
+  _order?: string | null;
   indication: string;
   name: string;
   alternativeDrugs?:
@@ -568,6 +571,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "emergencies_select".
  */
 export interface EmergenciesSelect<T extends boolean = true> {
+  _order?: T;
   name?: T;
   history?: T;
   examination?: T;
@@ -581,6 +585,7 @@ export interface EmergenciesSelect<T extends boolean = true> {
  * via the `definition` "guidances_select".
  */
 export interface GuidancesSelect<T extends boolean = true> {
+  _order?: T;
   name?: T;
   description?: T;
   references?:
@@ -620,6 +625,7 @@ export interface ToolsSelect<T extends boolean = true> {
  * via the `definition` "drugs_select".
  */
 export interface DrugsSelect<T extends boolean = true> {
+  _order?: T;
   indication?: T;
   name?: T;
   alternativeDrugs?:
