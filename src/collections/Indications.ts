@@ -16,10 +16,27 @@ export const Indications: CollectionConfig = {
       required: true,
     },
     {
-      name: 'name',
-      type: 'text',
-      label: 'Drug Name',
-      required: true,
+      name: 'drugs',
+      type: 'array',
+      label: 'Primary Drugs',
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          label: 'Drug Name',
+          required: true,
+        },
+        {
+          name: 'instruction',
+          type: 'richText',
+          label: 'Instruction (Dosage & Administration)',
+        },
+        {
+          name: 'sideEffects',
+          type: 'richText',
+          label: 'Side Effects',
+        },
+      ],
     },
     {
       name: 'alternativeDrugs',
@@ -32,17 +49,17 @@ export const Indications: CollectionConfig = {
           label: 'Drug Name',
           required: true,
         },
+        {
+          name: 'instruction',
+          type: 'richText',
+          label: 'Instruction (Dosage & Administration)',
+        },
+        {
+          name: 'sideEffects',
+          type: 'richText',
+          label: 'Side Effects',
+        },
       ],
-    },
-    {
-      name: 'instruction',
-      type: 'richText',
-      label: 'Instruction (Dosage & Administration)',
-    },
-    {
-      name: 'sideEffects',
-      type: 'richText',
-      label: 'Side Effects',
     },
     {
       name: 'references',
