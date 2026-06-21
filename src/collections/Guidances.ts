@@ -3,6 +3,9 @@ import type { CollectionConfig } from 'payload'
 export const Guidances: CollectionConfig = {
   slug: 'guidances',
   orderable: true,
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'name',
     group: 'App Content',

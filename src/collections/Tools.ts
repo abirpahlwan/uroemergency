@@ -2,6 +2,9 @@ import type { CollectionConfig } from 'payload'
 
 export const Tools: CollectionConfig = {
   slug: 'tools',
+  access: {
+    read: () => true,
+  },
   admin: {
     useAsTitle: 'name',
     group: "Others",
