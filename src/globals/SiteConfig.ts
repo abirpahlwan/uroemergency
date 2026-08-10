@@ -23,6 +23,17 @@ export const SiteConfig: GlobalConfig = {
       label: 'Tagline',
     },
     {
+      name: 'emergenciesCount',
+      type: 'number',
+      label: 'Emergencies On Home Screen',
+      admin: {
+        description:
+          'How many emergencies to show on the app home screen. The rest move to the Misc screen.',
+      },
+      defaultValue: 4,
+      min: 1,
+    },
+    {
       name: 'contactEmail',
       type: 'email',
       label: 'Contact Email',
