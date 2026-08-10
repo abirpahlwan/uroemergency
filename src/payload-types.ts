@@ -772,6 +772,10 @@ export interface SiteConfig {
   id: number;
   siteName: string;
   tagline?: string | null;
+  /**
+   * How many emergencies to show on the app home screen. The rest move to the Misc screen.
+   */
+  emergenciesCount?: number | null;
   contactEmail?: string | null;
   contactPhone?: string | null;
   address?: string | null;
@@ -794,6 +798,7 @@ export interface SiteConfig {
 export interface SiteConfigSelect<T extends boolean = true> {
   siteName?: T;
   tagline?: T;
+  emergenciesCount?: T;
   contactEmail?: T;
   contactPhone?: T;
   address?: T;
