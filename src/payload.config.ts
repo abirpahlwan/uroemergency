@@ -19,6 +19,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  cors: ['https://uroem.netlify.app'],
   admin: {
     user: Users.slug,
     importMap: {
