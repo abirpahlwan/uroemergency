@@ -74,6 +74,7 @@ export interface Config {
     tools: Tool;
     drugs: Drug;
     clinics: Clinic;
+    feedback: Feedback;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,6 +89,7 @@ export interface Config {
     tools: ToolsSelect<false> | ToolsSelect<true>;
     drugs: DrugsSelect<false> | DrugsSelect<true>;
     clinics: ClinicsSelect<false> | ClinicsSelect<true>;
+    feedback: FeedbackSelect<false> | FeedbackSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -469,6 +471,29 @@ export interface Clinic {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback".
+ */
+export interface Feedback {
+  id: number;
+  name: string;
+  message: string;
+  /**
+   * Optional — only used with consent
+   */
+  email?: string | null;
+  /**
+   * Optional — only used with consent
+   */
+  phone?: string | null;
+  /**
+   * Must be ticked when contact details are supplied
+   */
+  consentToContact?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -518,6 +543,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'clinics';
         value: number | Clinic;
+      } | null)
+    | ({
+        relationTo: 'feedback';
+        value: number | Feedback;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -719,6 +748,19 @@ export interface ClinicsSelect<T extends boolean = true> {
   is24Hours?: T;
   description?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "feedback_select".
+ */
+export interface FeedbackSelect<T extends boolean = true> {
+  name?: T;
+  message?: T;
+  email?: T;
+  phone?: T;
+  consentToContact?: T;
   updatedAt?: T;
   createdAt?: T;
 }
