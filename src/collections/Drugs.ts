@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const Indications: CollectionConfig = {
-  slug: 'indications',
+export const Drugs: CollectionConfig = {
+  slug: 'drugs',
   orderable: true,
   access: {
     read: () => true,

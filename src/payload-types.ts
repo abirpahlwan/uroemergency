@@ -72,7 +72,7 @@ export interface Config {
     emergencies: Emergency;
     guidances: Guidance;
     tools: Tool;
-    indications: Indication;
+    drugs: Drug;
     clinics: Clinic;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -86,7 +86,7 @@ export interface Config {
     emergencies: EmergenciesSelect<false> | EmergenciesSelect<true>;
     guidances: GuidancesSelect<false> | GuidancesSelect<true>;
     tools: ToolsSelect<false> | ToolsSelect<true>;
-    indications: IndicationsSelect<false> | IndicationsSelect<true>;
+    drugs: DrugsSelect<false> | DrugsSelect<true>;
     clinics: ClinicsSelect<false> | ClinicsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -332,9 +332,9 @@ export interface Tool {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "indications".
+ * via the `definition` "drugs".
  */
-export interface Indication {
+export interface Drug {
   id: number;
   _order?: string | null;
   indication: string;
@@ -512,8 +512,8 @@ export interface PayloadLockedDocument {
         value: number | Tool;
       } | null)
     | ({
-        relationTo: 'indications';
-        value: number | Indication;
+        relationTo: 'drugs';
+        value: number | Drug;
       } | null)
     | ({
         relationTo: 'clinics';
@@ -657,9 +657,9 @@ export interface ToolsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "indications_select".
+ * via the `definition` "drugs_select".
  */
-export interface IndicationsSelect<T extends boolean = true> {
+export interface DrugsSelect<T extends boolean = true> {
   _order?: T;
   indication?: T;
   drugs?:

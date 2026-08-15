@@ -8,7 +8,7 @@ export const metadata = { title: 'Drugs — Uro Emergency' }
 export default async function DrugsPage() {
   const payload = await getPayload({ config: await config })
   const { docs } = await payload.find({
-    collection: 'indications',
+    collection: 'drugs',
     limit: 100,
     sort: '_order',
   })

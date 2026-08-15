@@ -10,7 +10,7 @@ type Props = { params: Promise<{ id: string }> }
 export async function generateMetadata({ params }: Props) {
   const { id } = await params
   const payload = await getPayload({ config: await config })
-  const indication = await payload.findByID({ collection: 'indications', id: Number(id) }).catch(() => null)
+  const indication = await payload.findByID({ collection: 'drugs', id: Number(id) }).catch(() => null)
   return { title: indication ? `${indication.indication} — Uro Emergency` : 'Drug' }
 }
 
@@ -53,7 +53,7 @@ function DrugCard({ drug, variant }: { drug: DrugEntry; variant: 'primary' | 'al
 export default async function DrugDetailPage({ params }: Props) {
   const { id } = await params
   const payload = await getPayload({ config: await config })
-  const indication = await payload.findByID({ collection: 'indications', id: Number(id) }).catch(() => null)
+  const indication = await payload.findByID({ collection: 'drugs', id: Number(id) }).catch(() => null)
 
   if (!indication) notFound()
 
